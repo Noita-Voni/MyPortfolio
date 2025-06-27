@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vukile Ntsele</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/b69e984808.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="header">
+      <div class="container">
+        <nav>
+          <img src="images/logo.png" class="logo" />
+          <ul>
+            <li><a href="#">Approach</a></li>
+            <li><a href="#">Character</a></li>
+            <li><a href="#">Value Areas</a></li>
+            <li><a href="#">Impact</a></li>
+            <li><a href="#">Engage</a></li>
+          </ul>
+        </nav>
+        <div class="header-text">
+          <p>Problem Solver</p>
+          <h1>Hi, I am <span>Vukile</span><br />Insight. Strategy. Impact.</h1>
+        </div>
+      </div>
+    </div>
+
+    <!-----------------------------------about----------------------------------->
+    <div id="about">
+      <div class="container">
+        <div class="row">
+          <div class="about-col-1">
+            <img src="images/user.png" alt="" />
+          </div>
+          <div class="about-col-2">
+            <h1 class="sub-title">Character</h1>
+            <p>
+              I was not always the guy people expected to lead projects or align
+              with executives. In fact, I started out just curious.Curious about
+              why systems failed, why some people never got access, and why most
+              solutions were not built for us.<br /><br />
+
+              That curiosity grew into conviction.<br /><br />
+
+              Till, I realized I had a unique ability to bring the right people
+              together. The coder, the legal mind, the strategist and build
+              something that did not just work, but made real-world sense. That
+              is how I ended up founding Themba Digital Security, TDS, where we
+              have begun building secure, trusted systems for the public sector.
+              One prototype, one policy, one pitch at a time.<br /><br />
+
+              Along the way, I have learned that being “technical” is not just
+              about writing code. It is about translating vision into value, and
+              doing it without losing momentum.<br /><br />
+
+              Today, I chase impact and I back it with systems, strategy, and a
+              strong circle.<br /><br />
+
+              Because when the right minds meet, change is not just possible it
+              is inevitable.
+            </p>
+
+            <div class="tab-titles">
+              <p class="tab-links active-link" onclick="opentab('skills')">
+                Skills
+              </p>
+              <p class="tab-links" onclick="opentab('experience')">
+                Experience
+              </p>
+              <p class="tab-links" onclick="opentab('education')">Education</p>
+            </div>
+            <div class="tab-contents active-tab" id="skills">
+              <ul>
+                <li>
+                  <span>First Skill</span><br />Brief of that particular skill
+                </li>
+                <li>
+                  <span>Second Skill</span><br />Brief of that particular skill
+                </li>
+                <li>
+                  <span>Third Skill</span><br />Brief of that particular skill
+                </li>
+              </ul>
+            </div>
+            <div class="tab-contents" id="experience">
+              <ul>
+                <li>
+                  <span>First Experience</span><br />Brief of that particular
+                  Experience
+                </li>
+                <li>
+                  <span>Second Experience</span><br />Brief of that particular
+                  Experience
+                </li>
+                <li>
+                  <span>Third Experience</span><br />Brief of that particular
+                  Experience
+                </li>
+              </ul>
+            </div>
+            <div class="tab-contents" id="education">
+              <ul>
+                <li>
+                  <span>First Education</span><br />Brief of that particular
+                  Education
+                </li>
+                <li>
+                  <span>Second Education</span><br />Brief of that particular
+                  Education
+                </li>
+                <li>
+                  <span>Third Education</span><br />Brief of that particular
+                  Education
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-----------------------------------services----------------------------------->
+
+    <div id="services">
+      <div class="container">
+        <h1 class="sub-title">Value Areas</h1>
+        <div class="services-list">
+          <div>
+            <i class="fa-solid fa-code"></i>
+            <h2>Service Title 1</h2>
+            <p>Description of Service 1</p>
+            <a href="#">Learn More</a>
+          </div>
+          <div>
+            <i class="fa-solid fa-crop-simple"></i>                    
+            <h2>Service Title 2</h2>
+            <p>Description of Service 1</p>
+            <a href="#">Learn More</a>
+          </div>
+          <div>
+            <i class="fa-brands fa-app-store"></i>
+            <h2>Service Title 3</h2>
+            <p>Description of Service 1</p>
+            <a href="#">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-----------------------------------impact----------------------------------->
+    <div id="portfolio">
+      <div class="contantiner">
+        <h1 class="sub-title">My Work</h1>
+        <div class="work-list">
+          <div class="work">
+            <img src="images/work-1.png" /> 
+          </div>
+          <div class="work">
+            <img src="images/work-2.png" />
+            <div class="work">
+              <img src="images/work-3.png" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var tablinks = document.getElementsByClassName("tab-links");
+      var tabcontents = document.getElementsByClassName("tab-contents");
+      function opentab(tabname) {
+        for (tablink of tablinks) {
+          tablink.classList.remove("active-link");
+        }
+        for (tabcontent of tabcontents) {
+          tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+      }
+    </script>
+  </body>
+</html>
