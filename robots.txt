@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://noita-voni.github.io/MyPortfolio/sitemap.xml
+Sitemap: https://vukilentsele.netlify.app/sitemap.xml
