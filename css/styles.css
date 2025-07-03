@@ -140,6 +140,25 @@ nav ul li a:hover::after{
     margin-top: 50px;
 }
 
+.experience-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(134, 188, 37, 0.3);
+}
+
+/* Add subtle visual connection between image and content */
+.experience-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 420px; /* Position at the border between image and content */
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(134, 188, 37, 0.2) 50%, transparent 100%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
 .experience-item {
     display: flex;
     background: #262626;
@@ -147,29 +166,73 @@ nav ul li a:hover::after{
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    align-items: stretch; /* Make all child elements same height */
+    position: relative; /* For the visual divider */
 }
 
-.experience-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(134, 188, 37, 0.3);
+.experience-item:hover::after {
+    opacity: 1;
 }
 
 .experience-image {
-    flex: 0 0 250px;
+    flex: 0 0 420px; /* Fixed width for desktop */
     overflow: hidden;
+    display: flex;
+    align-items: stretch; /* Let image determine height */
+    justify-content: center;
+    background: #262626; /* Match experience-item background */
+    position: relative; /* For pseudo-element fallback */
+    border-radius: 15px 0 0 15px; /* Match experience-item border radius */
+    /* Remove min-height and max-height to eliminate dead space */
+}
+
+/* Fallback for broken images */
+.experience-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #262626 0%, #1a1a1a 100%); /* Match experience-item theme */
+    z-index: -1;
 }
 
 .experience-image img {
     width: 100%;
-    height: 100%;
+    height: auto; /* Let image determine its own height */
     object-fit: cover;
+    object-position: center;
     transition: transform 0.3s ease, filter 0.3s ease;
-    filter: brightness(0.7) contrast(1.1);
+    filter: brightness(0.8) contrast(1.1);
+    border-radius: 15px 0 0 15px; /* Match container radius for visual cohesion */
+    display: block; /* Remove any inline spacing */
+    /* Let image determine container height naturally */
+}
+
+/* Additional image safety fallbacks */
+.experience-image img:not([src]), 
+.experience-image img[src=""], 
+.experience-image img[src="#"] {
+    opacity: 0; /* Hide broken images */
+}
+
+.experience-image img[alt]::after {
+    content: attr(alt);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #86bc25;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 500;
+    z-index: 1;
 }
 
 .experience-item:hover .experience-image img {
-    transform: scale(1.05);
-    filter: brightness(0.8) contrast(1.2);
+    transform: scale(1.08);
+    filter: brightness(0.9) contrast(1.2);
 }
 
 .experience-content {
@@ -177,6 +240,8 @@ nav ul li a:hover::after{
     flex: 1;
     display: flex;
     flex-direction: column;
+    background: #262626; /* Ensure consistent background */
+    border-radius: 0 15px 15px 0; /* Match experience-item border radius */
 }
 
 .experience-content h3 {
@@ -466,6 +531,22 @@ nav .fa-solid{
     .contact-left, .contact-right{
         flex-basis: 100%;
     }
+    
+    /* Experience section for very small screens - images determine container size */
+    .experience-image img {
+        width: 100%;
+        height: auto; /* Let image determine natural height */
+        object-fit: contain; /* Show full image without cropping on very small screens */
+        background: #1a1a1a; /* Add background for letterboxing */
+    }
+    
+    .experience-content h3 {
+        font-size: 16px;
+    }
+    
+    .experience-content .role {
+        font-size: 13px;
+    }
     .copyright{
         font-size: 14px;
     }
@@ -473,15 +554,31 @@ nav .fa-solid{
     /* Experience section mobile responsive */
     .experience-item {
         flex-direction: column;
+        margin-bottom: 20px; /* Add spacing between items */
     }
     
     .experience-image {
         flex: none;
-        height: 200px;
+        width: 100%;
+        border-radius: 15px 15px 0 0; /* Round top corners only */
+        display: flex;
+        align-items: flex-start; /* Let image determine height */
+        justify-content: center;
+        /* Remove fixed height to let image determine container size */
+    }
+    
+    .experience-image img {
+        border-radius: 15px 15px 0 0; /* Match container radius */
+        width: 100%;
+        height: auto; /* Let image determine its natural height */
+        object-fit: contain; /* Show full image without cropping in mobile */
+        background: #1a1a1a; /* Add background for letterboxing */
+        display: block;
     }
     
     .experience-content {
         padding: 20px;
+        border-radius: 0 0 15px 15px; /* Round bottom corners only */
     }
     
     .experience-content h3 {
@@ -550,6 +647,21 @@ nav .fa-solid{
     .about-col-2{
         flex-basis: 55%;
     }
+    
+    /* Experience section tablet responsive */
+    .experience-image {
+        flex: 0 0 350px; /* Slightly smaller for tablet */
+        display: flex;
+        align-items: flex-start; /* Let image determine height */
+        /* Remove min/max height to prevent dead space */
+    }
+    
+    .experience-image img {
+        width: 100%;
+        height: auto; /* Let image determine natural height */
+        object-fit: contain; /* Show full image without cropping on tablets */
+        background: #1a1a1a; /* Add background for letterboxing */
+    }
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1440px){
@@ -577,6 +689,46 @@ nav .fa-solid{
     }
     .header-text h1{
         font-size: 65px;
+    }
+}
+
+/* Landscape orientation for mobile and small tablets */
+@media only screen and (max-height: 600px) and (orientation: landscape) {
+    .experience-item {
+        flex-direction: row; /* Keep horizontal layout in landscape */
+    }
+    
+    .experience-image {
+        flex: 0 0 300px; /* Smaller width for landscape */
+        border-radius: 15px 0 0 15px; /* Maintain left-side radius */
+        display: flex;
+        align-items: flex-start; /* Let image determine height */
+        /* Remove min/max height to prevent dead space */
+    }
+    
+    .experience-image img {
+        border-radius: 15px 0 0 15px; /* Match container */
+        width: 100%;
+        height: auto; /* Let image determine natural height */
+        object-fit: contain; /* Show full image in landscape mobile */
+        background: #1a1a1a; /* Add background for letterboxing */
+    }
+    
+    .experience-content {
+        padding: 15px;
+        border-radius: 0 15px 15px 0; /* Maintain right-side radius */
+    }
+    
+    .experience-content h3 {
+        font-size: 16px;
+    }
+}
+
+/* Ensure images never break aspect ratio on very wide screens */
+@media only screen and (min-width: 1920px) {
+    .experience-image {
+        flex: 0 0 450px; /* Larger for very wide screens */
+        /* Remove min/max height to prevent dead space */
     }
 }
 #msg{
@@ -772,25 +924,48 @@ nav ul li a.active::after {
     box-shadow: 0 10px 25px rgba(134, 188, 37, 0.3);
 }
 
-/* Responsive adjustments for interactive elements */
-@media only screen and (max-width: 600px) {
-    .project-filters {
-        text-align: left;
-    }
-    
-    .filter-btn {
-        margin: 5px 5px 5px 0;
-        padding: 8px 15px;
-        font-size: 12px;
-    }
-    
-    .work-overlay {
-        position: static;
-        opacity: 1;
-        margin-bottom: 10px;
-    }
-    
-    .work:hover {
-        transform: none;
-    }
+/* Intersection Observer Animations */
+.section-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.section-animate.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animations for child elements */
+.experience-item, .work {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-in .experience-item,
+.animate-in .work {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animate-in .experience-item:nth-child(1) { transition-delay: 0.1s; }
+.animate-in .experience-item:nth-child(2) { transition-delay: 0.2s; }
+.animate-in .experience-item:nth-child(3) { transition-delay: 0.3s; }
+.animate-in .experience-item:nth-child(4) { transition-delay: 0.4s; }
+
+.animate-in .work:nth-child(1) { transition-delay: 0.1s; }
+.animate-in .work:nth-child(2) { transition-delay: 0.2s; }
+.animate-in .work:nth-child(3) { transition-delay: 0.3s; }
+
+/* Tab content animation */
+.tab-contents {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+}
+
+.tab-contents.active-tab {
+    opacity: 1;
+    transform: translateY(0);
 }
