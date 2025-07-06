@@ -26,6 +26,12 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     
+    <!-- Preload critical images for instant loading -->
+    <link rel="preload" as="image" href="images/T.png" />
+    <link rel="preload" as="image" href="images/W.png" />
+    <link rel="preload" as="image" href="images/M.png" />
+    <link rel="preload" as="image" href="images/G.png" />
+    
     <link rel="stylesheet" href="css/styles.css" />
     <script
       src="https://kit.fontawesome.com/b69e984808.js"
@@ -149,7 +155,7 @@
         <div class="experience-list">
           <div class="experience-item">
             <div class="experience-image">
-              <img src="images/themba.webp" alt="Themba Digital Security" />
+              <img src="images/T.png" alt="Themba Digital Security" loading="lazy" />
             </div>
             <div class="experience-content">
               <h3>Themba Digital Security</h3>
@@ -169,7 +175,7 @@
 
           <div class="experience-item">
             <div class="experience-image">
-              <img src="images/itweb.webp" alt="ITWeb Security Hackathon" />
+              <img src="images/W.png" alt="ITWeb Security Hackathon" loading="lazy" />
             </div>
             <div class="experience-content">
               <h3>ITWeb Security Hackathon – Top 3 Winner</h3>
@@ -189,7 +195,7 @@
 
           <div class="experience-item">
             <div class="experience-image">
-              <img src="images/mentor.webp" alt="Robotics Mentorship" />
+              <img src="images/M.png" alt="Robotics Mentorship" loading="lazy" />
             </div>
             <div class="experience-content">
               <h3>Robotics Challenge Mentor</h3>
@@ -209,7 +215,7 @@
 
           <div class="experience-item">
             <div class="experience-image">
-              <img src="images/gkss.webp" alt="GKSS Midrand Chapter" />
+              <img src="images/G.png" alt="GKSS Midrand Chapter" loading="lazy" />
             </div>
             <div class="experience-content">
               <h3>GKSS Midrand Chapter – Chairperson</h3>
@@ -373,6 +379,15 @@
       // Start typing animation when page loads
       window.addEventListener('load', () => {
         setTimeout(typeWriter, 1000);
+        
+        // Instant image loading for experience section
+        const experienceImages = document.querySelectorAll('.experience-image img');
+        experienceImages.forEach((img, index) => {
+          // Add a small delay for staggered loading effect
+          setTimeout(() => {
+            img.classList.add('loaded');
+          }, index * 100);
+        });
       });
 
       // Project filtering
@@ -410,8 +425,8 @@
 
       // Intersection Observer for animations
       const observerOptions = {
-        threshold: 0.2,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.1, // Trigger earlier for faster loading
+        rootMargin: '100px 0px 0px 0px' // Load 100px before coming into view
       };
 
       const observer = new IntersectionObserver((entries) => {
@@ -423,6 +438,16 @@
             // Trigger skill bars animation when about section is visible
             if (entry.target.id === 'about') {
               setTimeout(animateSkillBars, 600);
+            }
+            
+            // Instant load experience images when section becomes visible
+            if (entry.target.id === 'services') {
+              const experienceImages = entry.target.querySelectorAll('.experience-image img:not(.loaded)');
+              experienceImages.forEach((img, index) => {
+                setTimeout(() => {
+                  img.classList.add('loaded');
+                }, index * 50); // Faster staggered loading
+              });
             }
           }
         });

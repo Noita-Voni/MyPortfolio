@@ -186,7 +186,7 @@ nav ul li a:hover::after{
     /* Remove min-height and max-height to eliminate dead space */
 }
 
-/* Fallback for broken images */
+/* Instant loading placeholder */
 .experience-image::before {
     content: '';
     position: absolute;
@@ -194,20 +194,57 @@ nav ul li a:hover::after{
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, #262626 0%, #1a1a1a 100%); /* Match experience-item theme */
+    background: linear-gradient(135deg, #86bc25 0%, #a8d555 100%);
+    opacity: 0.1;
     z-index: -1;
 }
 
+/* Faster loading animation */
+.experience-image::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid #86bc25;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Hide spinner when image is loaded */
+.experience-image img.loaded ~ .experience-image::after,
+.experience-image:has(img.loaded)::after {
+    opacity: 0;
+}
+
+/* Loading state for images */
 .experience-image img {
     width: 100%;
     height: auto; /* Let image determine its own height */
     object-fit: cover;
     object-position: center;
-    transition: transform 0.3s ease, filter 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
     filter: brightness(0.8) contrast(1.1);
     border-radius: 15px 0 0 15px; /* Match container radius for visual cohesion */
     display: block; /* Remove any inline spacing */
+    opacity: 0;
     /* Let image determine container height naturally */
+}
+
+/* Image loaded state */
+.experience-image img.loaded {
+    opacity: 1;
 }
 
 /* Additional image safety fallbacks */
@@ -230,7 +267,7 @@ nav ul li a:hover::after{
     z-index: 1;
 }
 
-.experience-item:hover .experience-image img {
+.experience-item:hover .experience-image img.loaded {
     transform: scale(1.08);
     filter: brightness(0.9) contrast(1.2);
 }
