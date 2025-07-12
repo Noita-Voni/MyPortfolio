@@ -1006,3 +1006,113 @@ nav ul li a.active::after {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Approach Section */
+#approach {
+  padding: 80px 0;
+  background: #080808;
+  color: #ffffff;
+}
+
+.approach-intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 60px;
+}
+
+.approach-intro p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #ababab;
+}
+
+.framework-section {
+  margin-bottom: 60px;
+}
+
+.framework-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  color: #86bc25;
+  text-align: center;
+}
+
+.framework-subtitle {
+  text-align: center;
+  color: #ababab;
+  margin-bottom: 40px;
+  font-size: 1.1rem;
+}
+
+.practices-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.practice-card {
+  background: #262626;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #86bc25;
+}
+
+.practice-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(134, 188, 37, 0.3);
+}
+
+.practice-icon {
+  font-size: 2.5rem;
+  color: #86bc25;
+  margin-bottom: 20px;
+}
+
+.practice-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.practice-card p {
+  color: #ababab;
+  line-height: 1.6;
+}
+
+.approach-outcome {
+  background: #262626;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  border-left: 4px solid #86bc25;
+}
+
+.approach-outcome p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* Responsive Design for Approach */
+@media (max-width: 768px) {
+  .practices-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .practice-card {
+    padding: 20px;
+  }
+  
+  .framework-section h2 {
+    font-size: 1.8rem;
+  }
+  
+  .approach-intro p {
+    font-size: 1.1rem;
+  }
+}
