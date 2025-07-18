@@ -72,34 +72,70 @@ nav ul li a:hover::after{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 40px;
 }
 .about-col-1{
-    flex-basis: 35%;
+    flex-basis: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 300px;
 }
 .about-col-1 img{
     width: 100%;
+    max-width: 400px;
     border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(134, 188, 37, 0.1);
+    margin-bottom: 30px;
 }
-.about-col-2{
-    flex-basis: 60%;
+
+.about-character {
+    margin-bottom: 40px;
+    text-align: left;
+    max-width: 800px;
+}
+
+.about-character h1 {
+    font-size: 60px;
+    font-weight: 600;
+    color: #86bc25;
+    margin-bottom: 20px;
+}
+
+.about-character p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #ababab;
 }
 .sub-title{
     font-size: 40px;
     font-weight: 600;
     color: #86bc25;
+    margin-bottom: 30px;
 }
-.tab-titles{
+
+.tab-links{
     display: flex;
     margin: 20px 0 40px;
+    gap: 30px;
 }
-.tab-links{
+.tab-link{
     margin-right: 50px;
     font-size: 18px;
     font-weight: 500;   
     cursor: pointer;
     position: relative;
+    background: none;
+    border: none;
+    color: #ababab;
+    padding: 10px 0;
+    transition: color 0.3s ease;
 }
-.tab-links::after{
+.tab-link:hover {
+    color: #86bc25;
+}
+.tab-link::after{
     content: '';
     width: 0;
     height: 3px;
@@ -109,24 +145,26 @@ nav ul li a:hover::after{
     bottom: -8px;
     transition: width 0.3s ease;
 }
-.tab-links.active-link::after{
+.tab-link.active::after{
     width: 100%;
     transition: width 0.3s ease;
-
 }
-.tab-contents ul li{
+.tab-link.active{
+    color: #86bc25;
+}
+.tab-content ul li{
     list-style: none;
     margin:10px 0;
 }
-.tab-contents ul li span{
+.tab-content ul li span{
     color: #86bc25;
     font-size: 14px; 
     font-weight: 600;
 }
-.tab-contents{
+.tab-content{
     display: none;
 }
-.tab-contents.active-tab{
+.tab-content.active{
     display: block;
 }
 
@@ -554,12 +592,38 @@ nav .fa-solid{
     }
     .about-col-1, .about-col-2{
         flex-basis: 100%;
+        max-width: 100%;
+        min-width: auto;
     }
     .about-col-1{
         margin-bottom: 30px;
+        justify-content: center;
+        order: 1;
+        display: flex;
+        flex-direction: column;
     }
-    .about-col-2{
+    .about-col-1 img{
+        order: 1;
+        margin-bottom: 20px;
+    }
+    .about-character{
+        order: 2;
+        margin-bottom: 30px;
+    }
+    .about-character h1{
+        font-size: 40px;
+        color: #86bc25;
+    }
+    .about-character p{
         font-size: 14px;
+    }
+    .about-sections{
+        order: 3;
+    }
+    .row{
+        gap: 20px;
+        flex-wrap: wrap;
+        flex-direction: column;
     }
     .tab-links{
         font-size: 16px;
@@ -657,101 +721,86 @@ nav .fa-solid{
         margin-right: 30px;
         margin-bottom: 10px;
     }
+    .about-col-1, .about-col-2{
+        flex-basis: 100%;
+        max-width: 100%;
+        min-width: auto;
+    }
+    .about-col-1{
+        margin-bottom: 30px;
+        justify-content: center;
+        order: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .about-col-1 img{
+        order: 1;
+        margin-bottom: 20px;
+    }
+    .about-character{
+        order: 2;
+        margin-bottom: 30px;
+    }
+    .about-character h1{
+        font-size: 40px;
+        color: #86bc25;
+    }
+    .about-character p{
+        font-size: 16px;
+    }
+    .about-sections{
+        order: 3;
+    }
+    .row{
+        gap: 20px;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
 }
 
-/* About Sections Layout */
-.about-sections {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-  margin-top: 30px;
+/* Enhanced desktop layout for about section */
+@media (min-width: 1200px) {
+    .row {
+        align-items: flex-start;
+        gap: 60px;
+    }
+    
+    .about-col-1 {
+        flex-basis: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .about-character {
+        margin-bottom: 60px;
+    }
+    
+    .about-character h1 {
+        font-size: 60px;
+        color: #86bc25;
+    }
+    
+    .about-character p {
+        font-size: 18px;
+    }
+    
+    .about-col-1 img {
+        max-width: 450px;
+    }
 }
 
-.about-section {
-  background: #262626;
-  padding: 30px;
-  border-radius: 10px;
-  border-left: 4px solid #86bc25;
-}
-
-.about-section h3 {
-  color: #86bc25;
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.about-section ul {
-  list-style: none;
-  padding: 0;
-}
-
-.about-section ul li {
-  margin-bottom: 25px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #444;
-}
-
-.about-section ul li:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-.about-section ul li span {
-  color: #ffffff;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.about-section ul li br + text {
-  color: #ababab;
-  line-height: 1.6;
-}
-
-/* Skill bars remain the same */
-.skill-bar {
-  width: 100%;
-  height: 6px;
-  background: #444;
-  border-radius: 3px;
-  margin-top: 10px;
-  overflow: hidden;
-}
-
-.skill-progress {
-  height: 100%;
-  background: linear-gradient(90deg, #86bc25, #a8d555);
-  border-radius: 3px;
-  width: 0%;
-  transition: width 2s ease-in-out;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .about-sections {
-    gap: 25px;
-  }
-  
-  .about-section {
-    padding: 20px;
-  }
-  
-  .about-section h3 {
-    font-size: 1.3rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .about-sections {
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-  }
-  
-  .about-section:first-child {
-    grid-column: 1 / -1;
-  }
+/* Desktop layout for about section - ensure side by side */
+@media (min-width: 769px) {
+    .about-col-1 {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+    
+    .row {
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        gap: 40px;
+    }
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1024px){
@@ -774,10 +823,24 @@ nav .fa-solid{
         font-size: 50px;
     }
     .about-col-1{
-        flex-basis: 40%;
+        flex-basis: 100%;
+        max-width: 100%;
     }
-    .about-col-2{
-        flex-basis: 55%;
+    .about-col-1 img{
+        max-width: 350px;
+    }
+    .about-character{
+        margin-bottom: 40px;
+    }
+    .about-character h1{
+        font-size: 50px;
+        color: #86bc25;
+    }
+    .about-character p{
+        font-size: 16px;
+    }
+    .row{
+        gap: 30px;
     }
     
     /* Experience section tablet responsive */
@@ -1210,4 +1273,284 @@ nav ul li a.active::after {
   .approach-intro p {
     font-size: 1.1rem;
   }
+}
+
+/* About sections styling - Clean and organized */
+.about-sections {
+    margin-top: 30px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 25px;
+}
+
+.about-section {
+    background: #262626;
+    padding: 25px;
+    border-radius: 12px;
+    border-left: 4px solid #86bc25;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(134, 188, 37, 0.15);
+}
+
+.about-section h3 {
+    color: #86bc25;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Skills Grid - Clean layout */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 0;
+}
+
+.skill-category {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(134, 188, 37, 0.15);
+}
+
+.skill-category h4 {
+    color: #86bc25;
+    margin-bottom: 10px;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 8px;
+}
+
+.skill-item span {
+    min-width: 90px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.skill-bar {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #86bc25, #a8d155);
+    border-radius: 2px;
+    transition: width 1.5s ease-in-out;
+    width: 0%;
+}
+
+/* Competencies Grid - Clean layout */
+.competencies-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 0;
+}
+
+.competency-item {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(134, 188, 37, 0.15);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.competency-item:hover {
+    transform: translateY(-2px);
+    border-color: #86bc25;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.competency-icon {
+    font-size: 20px;
+    margin-top: 1px;
+    flex-shrink: 0;
+}
+
+.competency-content {
+    flex: 1;
+}
+
+.competency-item h4 {
+    color: #86bc25;
+    margin-bottom: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.competency-item p {
+    color: #ababab;
+    font-size: 11px;
+    line-height: 1.3;
+    margin: 0;
+}
+
+/* Education List - Clean layout */
+.education-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.education-section ul li {
+    margin-bottom: 15px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border: 1px solid rgba(134, 188, 37, 0.15);
+    transition: all 0.3s ease;
+}
+
+.education-section ul li:hover {
+    transform: translateY(-2px);
+    border-color: #86bc25;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.education-section ul li:last-child {
+    margin-bottom: 0;
+}
+
+.education-section ul li span {
+    color: #86bc25;
+    font-size: 12px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.education-section ul li br + text {
+    color: #ababab;
+    font-size: 11px;
+    line-height: 1.3;
+}
+
+/* Responsive design for about sections - Clean and organized */
+@media (max-width: 768px) {
+    .about-sections {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .about-section {
+        padding: 20px;
+    }
+    
+    .about-section h3 {
+        font-size: 1.2rem;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .skill-category {
+        padding: 15px;
+    }
+    
+    .skill-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    
+    .skill-item span {
+        min-width: auto;
+        margin-bottom: 4px;
+        font-size: 12px;
+    }
+    
+    .competencies-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .competency-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+        padding: 15px;
+    }
+    
+    .competency-icon {
+        margin-top: 0;
+    }
+    
+    .education-section ul li {
+        padding: 15px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .about-sections {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+    }
+    
+    .about-section {
+        padding: 20px;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .competencies-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .skill-category, .competency-item {
+        padding: 10px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .about-sections {
+        gap: 30px;
+    }
+    
+    .about-section {
+        padding: 30px;
+    }
+    
+    .skills-grid {
+        gap: 15px;
+    }
+    
+    .competencies-grid {
+        gap: 15px;
+    }
 }
