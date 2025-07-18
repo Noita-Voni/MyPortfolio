@@ -659,6 +659,101 @@ nav .fa-solid{
     }
 }
 
+/* About Sections Layout */
+.about-sections {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.about-section {
+  background: #262626;
+  padding: 30px;
+  border-radius: 10px;
+  border-left: 4px solid #86bc25;
+}
+
+.about-section h3 {
+  color: #86bc25;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.about-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-section ul li {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #444;
+}
+
+.about-section ul li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.about-section ul li span {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.about-section ul li br + text {
+  color: #ababab;
+  line-height: 1.6;
+}
+
+/* Skill bars remain the same */
+.skill-bar {
+  width: 100%;
+  height: 6px;
+  background: #444;
+  border-radius: 3px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.skill-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #86bc25, #a8d555);
+  border-radius: 3px;
+  width: 0%;
+  transition: width 2s ease-in-out;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .about-sections {
+    gap: 25px;
+  }
+  
+  .about-section {
+    padding: 20px;
+  }
+  
+  .about-section h3 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-sections {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  .about-section:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
 @media only screen and (min-width: 769px) and (max-width: 1024px){
     .container{
         padding: 10px 8%;
